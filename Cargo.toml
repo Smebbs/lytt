@@ -1,0 +1,60 @@
+[package]
+name = "lytt"
+version = "0.1.0"
+edition = "2021"
+description = "A local-first CLI tool for audio transcription and RAG"
+license = "MIT"
+repository = "https://github.com/smebbs/lytt"
+keywords = ["rag", "audio", "transcription", "whisper", "ai"]
+categories = ["command-line-utilities", "multimedia::audio"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# CLI
+clap = { version = "4", features = ["derive", "env"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+
+# HTTP
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+axum = "0.8"
+tower-http = { version = "0.6", features = ["cors"] }
+
+# OpenAI
+async-openai = "0.27"
+
+# Database
+rusqlite = { version = "0.32", features = ["bundled"] }
+
+# Utilities
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dirs = "6"
+indicatif = { version = "0.17", features = ["tokio"] }
+console = "0.15"
+async-trait = "0.1"
+futures = "0.3"
+shellexpand = "3"
+tempfile = "3"
+regex = "1"
+url = "2"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[[bin]]
+name = "lytt"
+path = "src/main.rs"
+
+[lib]
+name = "lytt"
+path = "src/lib.rs"
